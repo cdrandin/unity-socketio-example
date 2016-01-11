@@ -39,12 +39,13 @@ public class TestSocketIO : MonoBehaviour
 		GameObject go = GameObject.Find("SocketIO");
 		socket = go.GetComponent<SocketIOComponent>();
 
-		socket.On("open", TestOpen);
+		socket.On("connection", TestOpen);
 		socket.On("boop", TestBoop);
-		socket.On("error", TestError);
-		socket.On("close", TestClose);
+//		socket.On("error", TestError);
+//		socket.On("close", TestClose);
 		
 		StartCoroutine("BeepBoop");
+		Debug.Log("here0");
 	}
 
 	private IEnumerator BeepBoop()
@@ -52,17 +53,23 @@ public class TestSocketIO : MonoBehaviour
 		// wait 1 seconds and continue
 		yield return new WaitForSeconds(1);
 		
+		Debug.Log("here1");
 		socket.Emit("beep");
+		Debug.Log("here2");
 		
 		// wait 3 seconds and continue
 		yield return new WaitForSeconds(3);
 		
+		Debug.Log("here3");
 		socket.Emit("beep");
+		Debug.Log("here4");
 		
 		// wait 2 seconds and continue
 		yield return new WaitForSeconds(2);
 		
+		Debug.Log("here5");
 		socket.Emit("beep");
+		Debug.Log("here6");
 		
 		// wait ONE FRAME and continue
 		yield return null;
